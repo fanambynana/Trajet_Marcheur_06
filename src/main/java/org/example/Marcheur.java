@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.Carte.Carte;
 import lombok.*;
+import org.example.Carte.Lieu;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,25 +22,16 @@ public class Marcheur {
     @EqualsAndHashCode.Exclude
     private List<Lieu> lieuxVisites = new ArrayList<>();
 
-    public List<Lieu> marcher(Lieu depart, Lieu arrive, Carte carte) {
-        if (lieuxVisites.isEmpty()) {
-            lieuxVisites.add(depart);
-        }
-        if (this.lieuxConnus.isEmpty()) {
-            lieuxConnus.addAll(Lieu.obtenirLieuxVoisins(depart, carte));
-        }
-
-        Lieu prochainLieu = Lieu.trouverLieuAleatoire(obtenirPositionActuelle(), carte);
-        lieuxVisites.add(prochainLieu);
-
-        if (obtenirPositionActuelle().equals(arrive)) {
-            return lieuxVisites;
-        } else {
-            return marcher(depart, arrive, carte);
-        }
-    }
-
     public Lieu obtenirPositionActuelle() {
         return new LinkedList<>(lieuxVisites).getLast();
+    }
+    public void ajouterUnLieuVisite(Lieu lieuVisiteAjouter) {
+        this.lieuxVisites.add(lieuVisiteAjouter);
+    }
+    public void ajouterUnLieuConnu(Lieu lieuConnusAjouter) {
+        this.lieuxConnus.add(lieuConnusAjouter);
+    }
+    public void ajouterPlusieursLieuxConnus(List<Lieu> plusieursLieuxConnus) {
+        this.lieuxConnus.addAll(plusieursLieuxConnus);
     }
 }

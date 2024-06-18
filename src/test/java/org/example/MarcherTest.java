@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.Carte.Carte;
+import org.example.Carte.Lieu;
+import org.example.Carte.Rue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -50,13 +53,16 @@ public class MarcherTest {
             )
     );
 
+    static Marcheur marcheurBjarni = new Marcheur(" Bjarni");
+
     @Test
     void BjarniMarcheDepuisHeiVersEsti() {
-        Marcheur marcheurBjarni = new Marcheur(" Bjarni");
-        List<Lieu> trajet = marcheurBjarni.marcher(lieuHei, lieuEsti, carte);
+        Marcher BjarniMarcher = new Marcher();
+        List<Lieu> trajet = BjarniMarcher.marcher(marcheurBjarni, lieuHei, lieuEsti, carte);
 
         Assertions.assertNotNull(trajet);
         Assertions.assertFalse(trajet.isEmpty());
+        Assertions.assertTrue(trajet.size() >= 3);
         Assertions.assertEquals(lieuHei, new LinkedList<>(trajet).getFirst());
         Assertions.assertEquals(lieuEsti, new LinkedList<>(trajet).getLast());
         Assertions.assertTrue(trajet.contains(lieuBalancoire));

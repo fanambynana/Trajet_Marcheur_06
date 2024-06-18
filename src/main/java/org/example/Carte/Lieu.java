@@ -1,6 +1,7 @@
-package org.example;
+package org.example.Carte;
 
 import lombok.*;
+import org.example.ignore.Environnement;
 
 import java.util.List;
 import java.util.Random;
